@@ -18,7 +18,7 @@ class MobTimer
       sleep(interval - pre_notify)
 
       next_member = members_list[i + 1]
-      pre_notify_member_turn(next_member: next_member)
+      pre_notify_member_turn(current_member: current_member, next_member: next_member)
 
       sleep(pre_notify)
     end
@@ -36,8 +36,8 @@ class MobTimer
     end
   end
 
-  def pre_notify_member_turn(next_member:)
-    comment = "もうすぐ <@#{next_member}> さんのターンです"
+  def pre_notify_member_turn(current_member:, next_member:)
+    comment = "もうすぐ <@#{current_member}> が終わり、<@#{next_member}> さんのターンになります"
     notifier.post_message(comment: comment)
 
     logger.info(comment)
